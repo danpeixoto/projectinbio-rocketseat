@@ -1,4 +1,4 @@
-import UserCard from "@app/components/commons/user-card";
+import UserCard from "@/src/app/components/commons/user-card/user-card";
 import { auth } from "@app/lib/auth";
 import { getDownloadURLFromPath } from "@app/lib/firebase";
 import {

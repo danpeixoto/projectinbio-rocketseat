@@ -1,5 +1,6 @@
 import { Github, Instagram, Linkedin, Plus, Twitter } from 'lucide-react';
-import Button from '../ui/button';
+import Button from '../../ui/button';
+import EditSocialLinks from './edit-social-links';
 
 export default function UserCard() {
   const icons = [
@@ -7,7 +8,6 @@ export default function UserCard() {
     Instagram,
     Linkedin,
     Twitter,
-    Plus
   ]
 
   return (
@@ -35,6 +35,7 @@ export default function UserCard() {
                 <Icon />
               </button>
             ))}
+            <EditSocialLinks />
           </div>
         </div>
       </div>
