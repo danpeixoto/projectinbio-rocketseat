@@ -45,7 +45,7 @@ export default async function ProfilePage({
         </Link>
       </div>
       <div className="w-1/2 flex justify-center h-min">
-        <UserCard />
+        <UserCard profileData={profileData} />
       </div>
       <div className="w-full flex justify-center content-start gap-4 flex-wrap overflow-y-auto">
         {projects.map(async (project) => (
@@ -53,7 +53,7 @@ export default async function ProfilePage({
             key={project.id}
             project={project}
             isOwner={isOwner}
-            img={await getDownloadURLFromPath(project.imagePath)}
+            img={await getDownloadURLFromPath(project.imagePath) || ""}
           />
         ))}
         {isOwner && <NewProject profileId={profileId} />}

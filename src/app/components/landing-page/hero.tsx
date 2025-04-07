@@ -1,4 +1,4 @@
-import { ProjectData } from "../../server/get-profile-data";
+import { ProfileData, ProjectData } from "../../server/get-profile-data";
 import ProjectCard from "../commons/project-cards";
 import { TotalViews } from "../commons/total-views";
 import UserCard from "../commons/user-card/user-card";
@@ -26,6 +26,18 @@ export default function Hero() {
     createdAt: "2023-01-01",
     totalVisits: 200,
   };
+  const fakeProfileData: ProfileData = {
+    userId: "1",
+    totalVisits: 300,
+    createdAt: 1672531199000,
+    socialMedias: {
+      github: "",
+      instagram: "",
+      linkedin: "",
+      twitter: "",
+    },
+    updatedAt: 1672531199000,
+  };
 
 
   return (
@@ -45,7 +57,7 @@ export default function Hero() {
 
       <div className="w-full flex items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_55%)]">
         <div className="relative">
-          <UserCard />
+          <UserCard profileData={fakeProfileData} />
           <div className="absolute -bottom-[7%] -right-[45%]">
             <TotalViews />
           </div>
