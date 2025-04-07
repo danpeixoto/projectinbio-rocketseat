@@ -30,6 +30,9 @@ export default function Hero() {
     userId: "1",
     totalVisits: 300,
     createdAt: 1672531199000,
+    name: "Seu Nome",
+    imagePath: "/me.jpeg",
+    description: "Uma breve descrição sobre você ou seu trabalho.",
     socialMedias: {
       github: "",
       instagram: "",

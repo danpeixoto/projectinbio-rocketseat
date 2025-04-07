@@ -6,6 +6,9 @@ export type ProfileData = {
   userId: string;
   totalVisits: number;
   createdAt: number;
+  name: string;
+  imagePath: string;
+  description: string;
   socialMedias: {
     github: string;
     instagram: string;
