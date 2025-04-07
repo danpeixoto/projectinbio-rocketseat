@@ -1,4 +1,5 @@
 import 'server-only';
+import { Link } from '../actions/add-custom-links';
 import { db } from "../lib/firebase";
 
 export type ProfileData = {
@@ -12,6 +13,9 @@ export type ProfileData = {
     twitter: string;
   }
   updatedAt?: number;
+  link1?: Link;
+  link2?: Link;
+  link3?: Link;
   // adicionar mais depois - todo
 };
 
