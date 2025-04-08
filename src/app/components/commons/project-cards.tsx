@@ -1,8 +1,10 @@
 "use client";
 
+import { increaseProjectVisits } from "@app/actions/increase-project-visits";
+import { formatUrl } from "@app/lib/utils";
 import { ProjectData } from "@app/server/get-profile-data";
 import Link from "next/link";
-import { formatUrl } from "../../lib/utils";
+import { useParams } from "next/navigation";
 
 export default function ProjectCard({
   project,
@@ -13,11 +15,15 @@ export default function ProjectCard({
   isOwner: boolean;
   img: string;
 }) {
-  const projectUrl = project.projectUrl;
-  const formattedUrl = formatUrl(projectUrl);
+  const { profileId } = useParams();
+  const formattedUrl = formatUrl(project.projectUrl);
 
-  function handleClick() {
-    console.log("clicked"); // TODO: implementar analytics
+  async function handleClick() {
+    console.log("clicou no projeto", project.projectName, profileId, project, isOwner);
+
+    if (!profileId || !project.id || isOwner) return;
+
+    await increaseProjectVisits(profileId as string, project.id);
   }
 
   return (

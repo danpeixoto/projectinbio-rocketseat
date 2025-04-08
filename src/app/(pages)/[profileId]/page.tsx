@@ -1,4 +1,6 @@
-import UserCard from "@/src/app/components/commons/user-card/user-card";
+import { increaseProfileVisits } from "@app/actions/increase-profile-visits";
+import ProjectCard from "@app/components/commons/project-cards";
+import UserCard from "@app/components/commons/user-card/user-card";
 import { auth } from "@app/lib/auth";
 import { getDownloadURLFromPath } from "@app/lib/firebase";
 import {
@@ -7,7 +9,6 @@ import {
 } from "@app/server/get-profile-data";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ProjectCard from "../../components/commons/project-cards";
 import { TotalViews } from "../../components/commons/total-views";
 import NewProject from "./new-project";
 
@@ -22,15 +23,15 @@ export default async function ProfilePage({
 
   if (!profileData) return notFound();
 
-  // TODO: get projects
-
   const projects = await getProfileProjects(profileId);
 
   const session = await auth();
 
   const isOwner = profileData.userId === session?.user?.id;
 
-  // TODO: Adicionar page view
+  if (!isOwner) {
+    await increaseProfileVisits(profileId);
+  }
 
   // Se o usuario não estiver mais no trial, nao deixar ver o projeto. Redirecionar para upgrade
 
@@ -53,14 +54,16 @@ export default async function ProfilePage({
             key={project.id}
             project={project}
             isOwner={isOwner}
-            img={await getDownloadURLFromPath(project.imagePath) || ""}
+            img={(await getDownloadURLFromPath(project.imagePath)) || ""}
           />
         ))}
         {isOwner && <NewProject profileId={profileId} />}
       </div>
-      <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
-        <TotalViews />
-      </div>
+      {isOwner && (
+        <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
+          <TotalViews totalVisits={profileData.totalVisits} />
+        </div>
+      )}
     </div>
   );
 }

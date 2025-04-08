@@ -31,13 +31,25 @@ export default function Hero() {
     totalVisits: 300,
     createdAt: 1672531199000,
     name: "Seu Nome",
-    imagePath: "/me.jpeg",
+    imagePath: undefined as any,
     description: "Uma breve descrição sobre você ou seu trabalho.",
     socialMedias: {
-      github: "",
-      instagram: "",
-      linkedin: "",
-      twitter: "",
+      github: "www.github.com",
+      instagram: "www.instagram.com",
+      linkedin: "www.linkedin.com",
+      twitter: "www.x.com",
+    },
+    link1: {
+      title: "Link 1",
+      url: "https://example.com",
+    },
+    link2: {
+      title: "Link 2",
+      url: "https://example.com",
+    },
+    link3: {
+      title: "Link 3",
+      url: "https://example.com",
     },
     updatedAt: 1672531199000,
   };
@@ -60,9 +72,9 @@ export default function Hero() {
 
       <div className="w-full flex items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_55%)]">
         <div className="relative">
-          <UserCard profileData={fakeProfileData} />
+          <UserCard profileData={fakeProfileData} isOwner={false} />
           <div className="absolute -bottom-[7%] -right-[45%]">
-            <TotalViews />
+            <TotalViews totalVisits={Infinity} />
           </div>
           <div className="absolute top-[20%] -left-[45%] -z-10">
             <ProjectCard img="/project1.jpg" isOwner={false} project={fakeProjectData} />
