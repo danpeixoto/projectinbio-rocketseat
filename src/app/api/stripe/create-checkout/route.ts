@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   console.log("stripe/route", { req });
   const { metadata, isSubscription } = await req.json();
-
   const price = isSubscription
     ? process.env.MONTHLY_PRICE
     : process.env.ANUAL_PRICE;
