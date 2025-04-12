@@ -2,11 +2,12 @@ import stripe from "@app/lib/stripe";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+  console.log("stripe/route", { req });
   const { metadata, isSubscription } = await req.json();
 
   const price = isSubscription
-    ? process.env.STRIPE_SUBSCRIPTION_PRICE_ID
-    : process.env.STRIPE_PRICE_ID;
+    ? process.env.MONTHLY_PRICE
+    : process.env.ANUAL_PRICE;
 
   const session = await stripe.checkout.sessions.create({
     // customer: ,

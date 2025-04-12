@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "stripe-local": "stripe listen --forward-to localhost:3000/api/webhooks/stripe"
   },
   "dependencies": {
     "@auth/firebase-adapter": "^2.7.4",
