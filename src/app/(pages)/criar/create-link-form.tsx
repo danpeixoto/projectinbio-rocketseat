@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { createLink } from '../../actions/create-link';
 import { verifyLink } from '../../actions/verify-links';
@@ -9,8 +9,9 @@ import TextInput from '../../components/ui/text-input';
 import { sanitizeLink } from '../../lib/utils';
 
 export default function CreateLinkForm() {
-  const [link, setLink] = useState<string>('');
+  const searchParams = useSearchParams();
   const [error, setError] = useState<string>('');
+  const [link, setLink] = useState<string>(sanitizeLink(searchParams.get('link') || ''));
   const router = useRouter();
 
   function handleLinkChange(e: React.ChangeEvent<HTMLInputElement>) {
