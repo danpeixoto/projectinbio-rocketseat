@@ -59,5 +59,5 @@ export async function getProfileId(userId: string) {
 
   if (snapshot.empty) return null;
 
-  return snapshot.docs[0].id;
+  return snapshot.docs.map((doc) => doc.id)[0];
 }
